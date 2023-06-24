@@ -39,24 +39,24 @@ class Dish(models.Model):
         )
 
 
-# class Event(models.Model):
-#     name = models.CharField(max_length=50)
-#     suname = models.CharField(max_length=50)
-#     email = models.EmailField()
-#     phone = models.CharField(max_length=20)
-#     date = models.DateField()
-#     time = models.TimeField()
-#     count = models.SmallIntegerField()  # number of people at the event
-#     message = models.TextField(max_length=500, blank=True)
-#     photo = models.ImageField(upload_to="event/", blank=True)
+class Event(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    date = models.DateField()
+    time = models.TimeField()
+    count = models.SmallIntegerField()  # number of people at the event
+    event_name = models.CharField(max_length=50)
+    describe = models.TextField(max_length=500, blank=True)
+    photo = models.ImageField(upload_to="event/% Y/% m/% d/", blank=True)
 
-#     def __str__(self):
-#         return f"{self.name} {self.suname} {self.date} {self.time}"
+    def __str__(self):
+        return f"{self.full_name} {self.date} {self.time} {self.event_name}"
 
 
-# class Gallery(models.Model):
-#     name = models.CharField(max_length=50)
-#     photo = models.ImageField(upload_to="gallery/% Y/% m/% d/", blank=True)
+class Gallery(models.Model):
+    name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to="gallery/% Y/% m/% d/", blank=True)
 
-#     def __str__(self):
-#         return f"{self.name}"
+    def __str__(self):
+        return f"{self.name}"
