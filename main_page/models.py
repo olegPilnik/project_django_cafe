@@ -41,22 +41,22 @@ class Dish(models.Model):
 
 class Event(models.Model):
     full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     phone = models.CharField(max_length=20)
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateTimeField()
     count = models.SmallIntegerField()  # number of people at the event
     event_name = models.CharField(max_length=50)
-    describe = models.TextField(max_length=500, blank=True)
-    photo = models.ImageField(upload_to="event/% Y/% m/% d/", blank=True)
+    maneg = models.CharField(max_length=50)  # manager responsible for the event
+    venue = models.CharField(max_length=100)  # venue of the event
+    description = models.TextField(max_length=500, blank=True)
 
     def __str__(self):
-        return f"{self.full_name} {self.date} {self.time} {self.event_name}"
+        return f"{self.full_name} {self.date} {self.event_name}"
 
 
 class Gallery(models.Model):
-    name = models.CharField(max_length=50)
+    event_name = models.ForeignKey(Event, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to="gallery/% Y/% m/% d/", blank=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.event_name}"
