@@ -49,6 +49,7 @@ class Event(models.Model):
     maneg = models.CharField(max_length=50)  # manager responsible for the event
     venue = models.CharField(max_length=100)  # venue of the event
     description = models.TextField(max_length=500, blank=True)
+    photo = models.ImageField(upload_to="event/% Y/% m/% d/", blank=True)
 
     def __str__(self):
         return f"{self.full_name} {self.date} {self.event_name}"
@@ -59,8 +60,8 @@ class Event(models.Model):
 
 
 class Gallery(models.Model):
-    event_name = models.ForeignKey(Event, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
     photo = models.ImageField(upload_to="gallery/% Y/% m/% d/", blank=True)
 
     def __str__(self):
-        return f"{self.event_name}"
+        return f"{self.name}"
