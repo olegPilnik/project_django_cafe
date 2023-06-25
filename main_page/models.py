@@ -53,6 +53,10 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.full_name} {self.date} {self.event_name}"
 
+    class Meta:
+        verbose_name_plural = "Events"
+        ordering = ("date",)
+
 
 class Gallery(models.Model):
     event_name = models.ForeignKey(Event, on_delete=models.CASCADE)
