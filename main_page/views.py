@@ -21,5 +21,6 @@ def main_page(request):
                         "special_dishes": special_dishes,
                         "contacts": contacts,
                         "chefs": chefs,
-
+                        "events": events,
+                        "galerry": gallery,
                         })
