@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import DishCategory, Dish, Event, Gallery, Contact
+from .models import DishCategory, Dish, Event, Gallery, Contact, Chef
 
 
 def main_page(request):
@@ -9,6 +9,7 @@ def main_page(request):
     events = Event.objects.all
     gallery = Gallery.objects.all
     contacts = Contact.objects.all
+    chefs = Chef.objects.all
 
 
 
@@ -19,5 +20,6 @@ def main_page(request):
                         "dishes": dishes,
                         "special_dishes": special_dishes,
                         "contacts": contacts,
+                        "chefs": chefs,
 
                         })

@@ -66,6 +66,10 @@ class Gallery(models.Model):
     def __str__(self):
         return f"{self.name}"
     
+    class Meta:
+        verbose_name_plural = "Gallery"
+        
+    
 class Contact(models.Model):
     location = models.CharField(max_length=100)
     open_day = models.CharField(max_length=100, blank=True)
@@ -74,3 +78,21 @@ class Contact(models.Model):
     email2 = models.EmailField()
     number_phone1 = models.CharField(max_length=20)
     number_phone2 = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name_plural = "Contacts"
+
+class Chef(models.Model):
+    full_name = models.CharField(max_length=100)
+    position = models.CharField(max_length=30, unique=True)
+    twitter = models.CharField(max_length=30, blank=True)
+    facebook = models.CharField(max_length=30, blank=True)
+    instagram = models.CharField(max_length=30, blank=True)
+    telegram = models.CharField(max_length=30, blank=True)
+    photo = models.ImageField(upload_to="chefs/", blank=True)
+
+    def __str__(self):
+        return f"{self.position}"
+    
+    class Meta:
+        verbose_name_plural = "Chefs"
