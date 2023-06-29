@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 
@@ -96,3 +97,42 @@ class Chef(models.Model):
     
     class Meta:
         verbose_name_plural = "Chefs"
+
+class Booking(models.Model):
+    ful_name = models.CharField(max_length=60)
+    email = models.EmailField()
+    phone_regex = RegexValidator(
+        regex=r"^(\+38)?0[0-9]{9}$",
+        message="Phone number must be entered in the format: +380xxxxxxxxx or 0xxxxxxxxx",
+    )
+    phone = models.CharField(validators=[phone_regex], max_length=20)
+    date = models.DateField()
+    time = models.TimeField()
+    of_people = models.PositiveSmallIntegerField(default=1)
+    message = models.TextField(max_length=200, blank=True)
+
+    is_processed = models.BooleanField(default=False)
+    date_in = models.DateTimeField(auto_now_add=True)
+    date_modify = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.ful_name}: {self.phone} {self.date} {self.time}"
+    
+    class Meta:
+        ordering = ("-date_in",)
+        
+
+class Client(models.Model):
+    full_name = models.CharField(max_length=60)
+    email = models.EmailField()
+    subject = models.CharField(max_length=50, blank=True)
+    message = models.TextField(max_length=200, blank=True)
+    date_in = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.full_name} {self.message}"
+    
+    class Meta:
+        ordering = ("-date_in",)
+        
