@@ -62,13 +62,14 @@ class Event(models.Model):
 
 class Gallery(models.Model):
     name = models.CharField(max_length=50)
-    photo = models.ImageField(upload_to="gallery/% Y/% m/% d/", blank=True)
+    photo = models.ImageField(upload_to="gallery/", blank=True)
 
     def __str__(self):
         return f"{self.name}"
     
     class Meta:
         verbose_name_plural = "Gallery"
+        ordering = ("name",)
         
     
 class Contact(models.Model):
