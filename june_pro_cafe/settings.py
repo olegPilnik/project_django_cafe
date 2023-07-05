@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main_page.apps.MainPageConfig",
+    "account.apps.AcountConfig",
+    "manager.apps.ManagerConfig",
 ]
 
 MIDDLEWARE = [
@@ -67,6 +69,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "main_page.context_processors.main_menu_items",
             ],
         },
     },

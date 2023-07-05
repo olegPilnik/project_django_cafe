@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.urls import reverse
 
 
 
@@ -137,3 +138,19 @@ class Client(models.Model):
     class Meta:
         ordering = ("-date_in",)
         
+
+class MainMenuItem(models.Model):
+    title = models.CharField(max_length=50, verbose_name='menu item')
+    slug = models.SlugField(max_length=50, unique=True, verbose_name='url')
+    position = models.PositiveSmallIntegerField()
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.title}/{self.slug}'
+    
+    def get_absolute_url(self):
+        return reverse('home') + f'#{self.slug}'
+
+
+    class Meta:
+        ordering = ("position",)
