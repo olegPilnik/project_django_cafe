@@ -1,0 +1,1 @@
+web: gunicorn june_pro_cafe.wsgi.py --log-file -
