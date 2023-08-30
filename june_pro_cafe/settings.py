@@ -33,7 +33,7 @@ DB_HOST = os.environ.get('DB_HOST')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://site-cafe-de335c5704c9.herokuapp.com/']
 
 
 # Application definition
