@@ -31,7 +31,7 @@ DB_PORT = os.environ.get('DB_PORT')
 DB_HOST = os.environ.get('DB_HOST')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://site-cafe-de335c5704c9.herokuapp.com/', ]
 
